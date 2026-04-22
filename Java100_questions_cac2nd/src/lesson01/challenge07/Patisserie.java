@@ -41,6 +41,58 @@
 
 package lesson01.challenge07;
 
-public class Patisserie {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+public class Patisserie {
+	public static void main(String[] args) throws IOException {
+
+		System.out.println("たいへんお待たせしました。");
+		System.out.println("【ポエール・ネルメ】");
+		System.out.println("ただいまより開店です！！");
+
+		int citronStock = 30;
+		int chocolateStock = 30;
+		int pistachioStock = 30;
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		System.out.println("\nそれぞれ何個ずつ買いますか？（最大30個まで）\n");
+		System.out.print("シトロン      >");
+		String citronBuyCountStr = reader.readLine();
+		double citronBuyCount = Double.parseDouble(citronBuyCountStr);
+		//文字から整数にする際には上の変数を使うがintなら=Int.parseIntを使う
+
+		System.out.print("ショコラ      >");
+		String chocolateBuyCountStr = reader.readLine();
+		double chocolateBuyCount = Double.parseDouble(chocolateBuyCountStr);
+
+		System.out.print("ピスターシュ  >");
+		String pistacheBuyCountStr = reader.readLine();
+		double pistachioBuyCount = Double.parseDouble(pistacheBuyCountStr);
+
+		System.out.println("\nシトロン     " + citronBuyCount + "個");
+		System.out.println("ショコラ     " + chocolateBuyCount + "個");
+		System.out.println("ピスターシュ " + pistachioBuyCount + "個");
+
+		double totalBuyCount = citronBuyCount + chocolateBuyCount + pistachioBuyCount;
+		int totalPrice = (int) (250 * citronBuyCount + 280 * chocolateBuyCount + 320 * pistachioBuyCount);
+
+		System.out.println("\n合計個数    " + totalBuyCount + "個");
+		System.out.println("合計金額  " + totalPrice + "円");
+		System.out.println("\nをお買いあげですね。");
+		System.out.println("承りました。");
+
+		//このままだと残り個数が小数ありで出力されるので、変換が必要 p127
+
+		citronStock = (int) (citronStock - citronBuyCount);
+		chocolateStock = (int) (chocolateStock - chocolateBuyCount);
+		pistachioStock = (int) (pistachioStock - pistachioBuyCount);
+
+		System.out.println("\n本日のおすすめ商品です。\n");
+		System.out.println("シトロン      \\250 ・・・ 残り" + (citronStock - citronBuyCount) + "個");
+		System.out.println("ショコラ      \\280 ・・・ 残り" + (chocolateStock - chocolateBuyCount) + "個");
+		System.out.println("ピスターシュ  \\320 ・・・ 残り" + (pistachioStock - pistachioBuyCount) + "個");
+	}
 }
