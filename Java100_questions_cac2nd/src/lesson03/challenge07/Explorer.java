@@ -83,16 +83,61 @@ public class Explorer {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
 		//ここにwhile文、if文を利用した処理を記述
 
+		while (i < 3) {//2までOKで３だと抜けちゃう
+			System.out.println("隊長：\r\n"
+					+ " *  どの手を出して通り抜けますか\r\n"
+					+ " *  （グー… 1 : チョキ… 2 : パー… 3）＞2");
+			String handString = br.readLine();
+			hand = Integer.parseInt(handString);
+			alligator = (int) (Math.random() * 10 % 3) + 1;
+			//ここでは何回繰り返すのか＆整数化＆ランダムについて書かれる
 
-		if (i == 3) {
-			System.out.println("隊長：");
-			System.out.println("川を渡り切りました。");
-		} else {
-			System.out.println("通り抜けに失敗しました...");
+			if (hand == 1) {//入力した数
+				if (alligator == 1 || alligator == 2) {//ランダムで出た数
+					//そもそも３がでたらすぐにelseにいく
+					System.out.println("\n隊長：");
+					String wani = (alligator == 1) ? "グーワニ" : "チョキワニ";
+					//もしalligateorが１ならwaniにはグーワニを、それ以外ならチョキワニを入れて
+					//（質問）？（Yesならこっち） : （Noならこっち）
+					System.out.println("相手は" + wani + "でした。");
+					System.out.println((i + 1) + "匹目通り抜け成功！\n");
+					//１か２どっちかが入力されたら以下の処理に入る
+					//alligatorが１だったら
+				} else {
+					System.out.println("\n隊長：");
+					System.out.println("相手は：パーワニでした。");
+					break;
+				}
+			} else if (hand == 2) {
+				if (alligator == 2 || alligator == 3) {
+					System.out.println("\n隊長：");
+					String wani = (alligator == 2) ? "チョキワニ" : "パーワニ";
+					System.out.println("相手は" + wani + "でした。");
+					System.out.println((i + 1) + "匹目通り抜け成功！\n");
+				} else {
+					System.out.println("\n隊長：");
+					System.out.println("相手は：グーワニでした。");
+					break;
+				}
+			} else if (hand == 3) {
+				if (alligator == 3 || alligator == 1) {
+					System.out.println("\n隊長：");
+					String wani = (alligator == 3) ? "パーワニ" : "グーワニ";
+					System.out.println("相手は" + wani + "でした。");
+					System.out.println((i + 1) + "匹目通り抜け成功！\n");
+				} else {
+					System.out.println("\n隊長：");
+					System.out.println("相手は：チョキワニでした。");
+					break;
+				}
+			} else {//123以外の数字を入れたらここ
+				System.out.println("\n隊長：");
+				System.out.println("そんな手はありませんよ。もう一度入れてください。\n");
+				i--;//カウントはするけどここにきたら回数にはいれない
+			}
+			i++;
 		}
-
 	}
 }
